@@ -6,17 +6,36 @@
         <meta name="description" content="Dwell and Flight Time Logger">
         <meta name="author" content="Maya Murphy, Nathaniel Reid">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     </head>
     <body>
+        
+
         <!-- Front-end Dev Logic -->
+        <div class=" container-fluid ">
+            <h2 class="text-center">Survey 1 Implementation</h2>
+            <form>
+                <div class="form-group col-md-6">
+                    <label for="Directions" class="control-label">Directions</label>
+                    <p> Insert <b>password1234</b> ten times in the input box below without pressing the backspace button. </p>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="password-input" class="form-control" id="pw-input" placeholder="Type password1234">
+                </div>
+                <div class="form-group col-md-6">
+                    <p class="text-success text-center" id="entry-counter"> <b>Times Entered: </b> </p>
+                </div>
+                <div class="form-group col-md-1 text-center">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
 
         <!-- Back-end Dev Logic 
         <script> insert bootstrap for CSS </script>
         <script> insert Firebase OR Microsoft SQL for Database </script>
         <script src="index.js"></script>
         -->
-
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     </body>
 </html>
