@@ -1,26 +1,3 @@
-// class Character {
-//   constructor(key, flight_time, dwell_time, trial){
-//     this.key = key;
-//     this.ftime = flight_time;
-//     this.dtime = dwell_time;
-//     this.trial = trial;
-//   }
-// }
-
-class Flight {
-  constructor(character, flight_time, round){
-    this.character = character;
-    this.ftime = flight_time;
-    this.round = round;
-    // this.length = 0;
-  }
-}
-
-class User {
-  constructor(){
-    this.round_list = [];
-  }
-}
 
 document.getElementById("pw-input").addEventListener("click", (e) => {
   console.log("Hey user! You clicked the password text field.");
