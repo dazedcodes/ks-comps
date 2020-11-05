@@ -9,3 +9,10 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     event.preventDefault();
   }
 });
+
+document.getElementById("pw-input").addEventListener('keydown', (e) => {
+  if (event.code == 'Enter'){
+    console.log('The physical key pressed was the Enter key.');
+    event.preventDefault();
+  }
+});
