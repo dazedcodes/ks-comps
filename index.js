@@ -37,8 +37,12 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     event.preventDefault();
   }
 });
-
+let counter = 0;
 document.getElementById("add-btn").addEventListener("click", (e) => {
     console.log('Hey user! You clicked the submit button.');
     document.getElementById("pw-input").value = "";
+    counter = counter + 1;
+    console.log(counter);
+    document.getElementById("counter").innerHTML = "Round: " + counter;
+
 });
