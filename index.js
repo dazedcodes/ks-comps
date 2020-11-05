@@ -5,8 +5,8 @@ document.getElementById("pw-input").addEventListener("click", (e) => {
 
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
   if (event.code == 'Backspace'){
+    window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     console.log('The physical key pressed was the BACKSPACE key.');
-    event.preventDefault();
   }
 });
 
@@ -15,4 +15,9 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
   }
+});
+
+document.getElementById("add-btn").addEventListener("click", (e) => {
+    console.log('Hey user! You clicked the submit button.');
+    document.getElementById("pw-input").value = "";
 });
