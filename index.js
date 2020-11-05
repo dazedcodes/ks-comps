@@ -27,6 +27,7 @@ document.getElementById("pw-input").addEventListener("click", (e) => {
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
   if (event.code == 'Backspace'){
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
+    document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
   }
 });
@@ -39,10 +40,9 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
 });
 let counter = 0;
 document.getElementById("add-btn").addEventListener("click", (e) => {
+    counter = counter + 1;
     console.log('Hey user! You clicked the submit button.');
     document.getElementById("pw-input").value = "";
-    counter = counter + 1;
-    console.log(counter);
     document.getElementById("counter").innerHTML = "Round: " + counter;
 
 });
