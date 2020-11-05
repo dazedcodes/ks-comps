@@ -52,15 +52,18 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     console.log('The physical key pressed was the BACKSPACE key.');
   }
 
-  console.log(character);
-  console.log("ASCII value of", character, ": ", character_ascii);
-  console.log("Miliseconds of", character, ": ", flight_time);
+  // console.log(character);
+  console.log("ASCII value of", character, "(keydown): ", character_ascii);
+  console.log("Miliseconds of", character, "(keydown): ", flight_time);
   console.log("Round of", character, ": ",round);
-
-
 });
 
 document.getElementById("pw-input").addEventListener("keyup", (e) => {
+  let character = String.fromCharCode(event.keyCode);
+  let character_ascii = (event.keyCode);
+  var d = new Date();
+  var dwell_time = d.getMilliseconds();
+  let round = counter;
   if (event.code == 'Enter'){
     console.log('The physical key Enter was released.');
     event.preventDefault();
@@ -70,5 +73,9 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
   }
+  console.log(character);
+  console.log("ASCII value of", character, "(keyup): ", character_ascii);
+  console.log("Miliseconds of", character, "(keyup): ", dwell_time);
+  console.log("Round of", character, ": ",round);
 
 });
