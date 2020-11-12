@@ -4,55 +4,75 @@ document.getElementById("pw-input").addEventListener("click", (e) => {
   event.preventDefault();
 });
 
-let counter = 0;
-document.getElementById("add-btn").addEventListener("click", (e) => {
-    counter = counter + 1;
-    console.log('Hey user! You clicked the submit button.');
-    document.getElementById("pw-input").value = "";
-    document.getElementById("counter").innerHTML = "Round: " + counter;
+$(document).ready(function(){
+    $("#pw-input").bind("cut copy paste", function(e) {
+        e.preventDefault();
+    });
+});
 
+let roundCounter = 0;
+let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
+document.getElementById("add-btn").addEventListener("click", (e) => {
+    if (document.getElementById("pw-input").value == "password1234") {
+      roundCounter = roundCounter + 1;
+      console.log('Hey user! You clicked the submit button.');
+      document.getElementById("pw-input").value = "";
+      document.getElementById("counter").innerHTML = "Round: " + roundCounter;
+    }
+    else {
+      window.alert('Hey user! You clicked the submit button, but your password input does not match our request! Please try again!');
+      document.getElementById("pw-input").value = "";
+      console.log('Disregard all inputs of Round' + roundCounter + 'above this mark.');
+    }
 });
 
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
   let character = String.fromCharCode(event.keyCode);
   let character_ascii = (event.keyCode);
-  var d = new Date();
-  var flight_time = d.getMilliseconds();
-  let round = counter;
+  var flight_time = Date.now();
+  let round = roundCounter;
   if (event.code == 'Enter'){
     console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
-  }
-  if (event.code == 'Backspace'){
+  } else if (event.code == 'Backspace'){
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
+  //} else if (document.getElementById("pw-input").value == 
+       //     testPasscode.substring(0, document.getElementById("pw-input").value.length - 1)){
+    //window.alert("You have made a typo while inserting the passcode. We've all done it. Many times. Try again!");
+    //document.getElementById("pw-input").value = "";
+  //  console.log('The physical key pressed was a typo.');
+  } else {
+    // console.log(character);
+    console.log("ASCII value of", character, "(keydown): ", character_ascii);
+    console.log("Miliseconds of", character, "(keydown): ", flight_time);
+    console.log("Round of", character, ": ", round);
   }
-
-  // console.log(character);
-  console.log("ASCII value of", character, "(keydown): ", character_ascii);
-  console.log("Miliseconds of", character, "(keydown): ", flight_time);
-  console.log("Round of", character, ": ",round);
 });
 
 document.getElementById("pw-input").addEventListener("keyup", (e) => {
   let character = String.fromCharCode(event.keyCode);
   let character_ascii = (event.keyCode);
-  var d = new Date();
-  var dwell_time = d.getMilliseconds();
-  let round = counter;
+  var dwell_time = Date.now();
+  let round = roundCounter;
   if (event.code == 'Enter'){
-    console.log('The physical key Enter was released.');
+    console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
-  }
-  if (event.code == 'Backspace'){
+  } else if (event.code == 'Backspace'){
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
+  //} else if (document.getElementById("pw-input").value == 
+    //        testPasscode.substring(0, document.getElementById("pw-input").value.length)){
+    //window.alert("You have made a typo while inserting the passcode. We've all done it. Many times. Try again!");
+    //document.getElementById("pw-input").value = "";
+    //console.log('The physical key pressed was a typo.');
+  } else {
+    console.log(character);
+    console.log("ASCII value of", character, "(keydown): ", character_ascii);
+    console.log("Miliseconds of", character, "(keydown): ", dwell_time);
+    console.log("Round of", character, ": ", round);
   }
-  console.log(character);
-  console.log("ASCII value of", character, "(keyup): ", character_ascii);
-  console.log("Miliseconds of", character, "(keyup): ", dwell_time);
-  console.log("Round of", character, ": ",round);
-
 });
+
