@@ -38,7 +38,7 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
-  //} else if (document.getElementById("pw-input").value == 
+  //} else if (document.getElementById("pw-input").value ==
        //     testPasscode.substring(0, document.getElementById("pw-input").value.length - 1)){
     //window.alert("You have made a typo while inserting the passcode. We've all done it. Many times. Try again!");
     //document.getElementById("pw-input").value = "";
@@ -63,16 +63,15 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
-  //} else if (document.getElementById("pw-input").value == 
+  //} else if (document.getElementById("pw-input").value ==
     //        testPasscode.substring(0, document.getElementById("pw-input").value.length)){
     //window.alert("You have made a typo while inserting the passcode. We've all done it. Many times. Try again!");
     //document.getElementById("pw-input").value = "";
     //console.log('The physical key pressed was a typo.');
   } else {
     console.log(character);
-    console.log("ASCII value of", character, "(keydown): ", character_ascii);
-    console.log("Miliseconds of", character, "(keydown): ", dwell_time);
+    console.log("ASCII value of", character, "(keyup): ", character_ascii);
+    console.log("Miliseconds of", character, "(keyup): ", dwell_time);
     console.log("Round of", character, ": ", round);
   }
 });
-
