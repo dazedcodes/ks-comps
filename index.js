@@ -12,6 +12,16 @@ $(document).ready(function(){
 
 let roundCounter = 0;
 let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
+let ksData = [
+  {
+    "uuid": 1,
+    "round": 1,
+    "character": "A",
+    "keydown-mili": 0065,
+    "keyup-mili": 0080
+  }
+]
+console.log(ksData);
 document.getElementById("add-btn").addEventListener("click", (e) => {
     if (document.getElementById("pw-input").value == "password1234") {
       roundCounter = roundCounter + 1;
@@ -31,6 +41,7 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
   let character_ascii = (event.keyCode);
   var flight_time = Date.now();
   let round = roundCounter;
+  var database
   if (event.code == 'Enter'){
     console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
@@ -48,6 +59,8 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     console.log("ASCII value of", character, "(keydown): ", character_ascii);
     console.log("Miliseconds of", character, "(keydown): ", flight_time);
     console.log("Round of", character, ": ", round);
+    // character-keydown-mili == flight_time
+    // character-round == round
   }
 });
 
@@ -73,5 +86,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     console.log("ASCII value of", character, "(keyup): ", character_ascii);
     console.log("Miliseconds of", character, "(keyup): ", dwell_time);
     console.log("Round of", character, ": ", round);
+    // character-keyup-mili == dwell_time
+    // character-round == round
   }
 });
