@@ -70,8 +70,8 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     //console.log('The physical key pressed was a typo.');
   } else {
     console.log(character);
-    console.log("ASCII value of", character, "(keydown): ", character_ascii);
-    console.log("Miliseconds of", character, "(keydown): ", dwell_time);
+    console.log("ASCII value of", character, "(keyup): ", character_ascii);
+    console.log("Miliseconds of", character, "(keyup): ", dwell_time);
     console.log("Round of", character, ": ", round);
   }
 });
