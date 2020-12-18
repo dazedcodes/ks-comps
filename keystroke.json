@@ -1,0 +1,9 @@
+[
+  {
+    "uuid": 1,
+    "round": 1,
+    "character": "A",
+    "keydown-mili": 0065,
+    "keyup-mili": 0080
+  }
+]

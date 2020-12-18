@@ -12,6 +12,16 @@ $(document).ready(function(){
 
 let roundCounter = 0;
 let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
+let ksData = [
+  {
+    "uuid": 1,
+    "round": 1,
+    "character": "A",
+    "keydown-mili": 0065,
+    "keyup-mili": 0080
+  }
+]
+console.log(ksData);
 document.getElementById("add-btn").addEventListener("click", (e) => {
     if (document.getElementById("pw-input").value == "password1234") {
       roundCounter = roundCounter + 1;
@@ -31,6 +41,7 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
   let character_ascii = (event.keyCode);
   var flight_time = Date.now();
   let round = roundCounter;
+  var database
   if (event.code == 'Enter'){
     console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
@@ -38,7 +49,7 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
-  //} else if (document.getElementById("pw-input").value == 
+  //} else if (document.getElementById("pw-input").value ==
        //     testPasscode.substring(0, document.getElementById("pw-input").value.length - 1)){
     //window.alert("You have made a typo while inserting the passcode. We've all done it. Many times. Try again!");
     //document.getElementById("pw-input").value = "";
@@ -48,6 +59,8 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     console.log("ASCII value of", character, "(keydown): ", character_ascii);
     console.log("Miliseconds of", character, "(keydown): ", flight_time);
     console.log("Round of", character, ": ", round);
+    // character-keydown-mili == flight_time
+    // character-round == round
   }
 });
 
@@ -63,7 +76,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
     document.getElementById("pw-input").value = "";
     console.log('The physical key pressed was the BACKSPACE key.');
-  //} else if (document.getElementById("pw-input").value == 
+  //} else if (document.getElementById("pw-input").value ==
     //        testPasscode.substring(0, document.getElementById("pw-input").value.length)){
     //window.alert("You have made a typo while inserting the passcode. We've all done it. Many times. Try again!");
     //document.getElementById("pw-input").value = "";
@@ -73,6 +86,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     console.log("ASCII value of", character, "(keyup): ", character_ascii);
     console.log("Miliseconds of", character, "(keyup): ", dwell_time);
     console.log("Round of", character, ": ", round);
+    // character-keyup-mili == dwell_time
+    // character-round == round
   }
 });
-
