@@ -5,7 +5,7 @@ document.getElementById("pw-input").addEventListener("click", (e) => {
 });
 
 $(document).ready(function(){
-    $("#pw-input").bind("cut copy paste", function(e) {
+    $("#pw-input").bind("cut copy paste delete", function(e) {
         e.preventDefault();
     });
 });
