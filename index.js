@@ -1,8 +1,3 @@
-document.getElementById("pw-input").addEventListener("click", (e) => {
-  console.log("Hey user! You clicked the password text field.");
-  event.preventDefault();
-});
-
 $(document).ready(function(){
     $("#pw-input").bind("cut copy paste delete", function(e) {
         e.preventDefault();
@@ -10,9 +5,15 @@ $(document).ready(function(){
 });
 
 let uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+let testStage = 0;
 let roundCounter = 0;
 let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
 let ksDataHolding = [];
+
+document.getElementById("pw-input").addEventListener("click", (e) => {
+  console.log("Hey user! You clicked the password text field.");
+  event.preventDefault();
+});
 
 document.getElementById("add-btn").addEventListener("click", (e) => {
     if (document.getElementById("pw-input").value == "password1234") {
@@ -27,6 +28,12 @@ document.getElementById("add-btn").addEventListener("click", (e) => {
       document.getElementById("pw-input").value = "";
       console.log('Disregard all inputs of Round' + roundCounter + 'above this mark.');
       ksDataHolding = [];
+    }
+    // Work in progress: Test incrementer
+    if (round = 20) {
+      testStage + 1;
+      roundCounter = 0;
+      advanceToNextRound();
     }
 });
 
@@ -75,7 +82,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
 
 function writeKsData() {
   for(let i = 0; i < ksDataHolding.length; i++){
-    firebase.database().ref('events/' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + '/' + ksDataHolding[i].character + '/' + ksDataHolding[i].time).set({
+    firebase.database().ref('events/test' + ksDataHolding[i].testStage + '/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + '/' + ksDataHolding[i].character + '/' + ksDataHolding[i].time).set({
       uuid: ksDataHolding[i].uuid,
       round: ksDataHolding[i].round,
       character: ksDataHolding[i].character,
@@ -88,6 +95,7 @@ function writeKsData() {
 
 function stashKsData(uuid, round, character, eventType) {
   let ksData =  {
+    "testStage": testStage,
     "uuid": uuid,
     "round": round,
     "character": character,
@@ -95,4 +103,8 @@ function stashKsData(uuid, round, character, eventType) {
     "eventType": eventType
     }
   ksDataHolding.push(ksData);
+}
+
+function advanceToNextRound() {
+  
 }

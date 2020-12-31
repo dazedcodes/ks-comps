@@ -24,7 +24,21 @@
       <div class="row m-5">
         <div class="column">
           <form class="mt-3" autocomplete="off">
-            <h4> Directions: Insert <b><span id="passcode-wrapper">password1234</span></b> ten times in the input box below without pressing the backspace button. </h4>
+            <h4 id="firs-instructions"> Thank you for helping us with our comps project.
+            This survey will take approximately ten minutes and will provide us with valuable data to develop better password security methods. 
+            To ensure accurate data collection, you should complete this survey in a single session.</h4>
+            <button type="button" id="start-btn" class="btn btn-primary mt-3"> Start </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-center">
+      <div class="row m-5">
+        <div class="column">
+          <form class="mt-3" autocomplete="off">
+            <h4 id="test-1-instructions"> Directions: Insert <b><span id="passcode-wrapper">password1234</span></b> twenty times in the input box below without pressing the backspace button. </h4>
+            <h4 id="test-2-instructions"> Our comps project studies the value of keystroke-pattern-based passwords. You have a unique rhythym of typing that differs from most other people's. The timing and speed with which you press certain keys in your password will vary considerably from other's. This rhythym may be used as a second factor in authenticating your password, adding to the security and complexity of your identifier. Directions: Insert <b><span id="passcode-wrapper-2">password1234</span></b> twenty times in the input box below without pressing the backspace button. Try to be consistent in how you type the password so your keystrokes are identifiable.</h4>
+            <h4 id="test-3-instructions"> Now that you have shown us your keystroke identifier, we will test your ability to mimic other people's keystroke's. Directions: Try to vary your keystrokes with each attempt as you type <b><span id="passcode-wrapper-3">unbreachable-98</span></b>. We'll tell you when you match the keystroke set we ahve logged. </h4>
             <input type="text" class="form-control col-sm-3" id="pw-input" placeholder="Type password1234">
             <p id="counter"> Round: 0 </p>
 
