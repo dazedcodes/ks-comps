@@ -24,23 +24,28 @@ document.getElementById("start-btn").addEventListener("click", (e) => {
 });
 
 document.getElementById("add-btn").addEventListener("click", (e) => {
-    if (document.getElementById("pw-input").value == "password1234") {
-      roundCounter = roundCounter + 1;
-      console.log('Hey user! You clicked the submit button.');
-      document.getElementById("pw-input").value = "";
-      document.getElementById("round-counter").innerHTML = "Round: " + roundCounter;
-      writeKsData();
-    }
-    else {
-      window.alert('Hey user! You clicked the submit button, but your password input does not match our request! Please try again!');
-      document.getElementById("pw-input").value = "";
-      console.log('Disregard all inputs of Round' + roundCounter + 'above this mark.');
-      ksDataHolding = [];
-    }
-    // Work in progress: Test incrementer
+  if (document.getElementById("pw-input").value == "Type20Words") {
+    roundCounter = roundCounter + 1;
+    console.log('Hey user! You clicked the submit button.');
+    document.getElementById("pw-input").value = "";
     if (roundCounter == 2) {
-      advanceToNextStage();
+      testStage += 1;
+      roundCounter = 0;
+      if (testStage == 4) {
+        advanceToThankYou();
+      } else {
+        advanceToNextStage();
+      }
     }
+    document.getElementById("round-counter").innerHTML = "Round: " + roundCounter;
+    writeKsData();
+  }
+  else {
+    window.alert('Hey user! You clicked the submit button, but your password input does not match our request! Please try again!');
+    document.getElementById("pw-input").value = "";
+    console.log('Disregard all inputs of Round' + roundCounter + 'above this mark.');
+    ksDataHolding = [];
+  }
 });
 
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
@@ -113,11 +118,13 @@ function stashKsData(uuid, round, character, eventType) {
 }
 
 function advanceToNextStage() {
-  testStage += 1;
-  roundCounter = 0;
   let findTestInstructions = "test-" + testStage + "-instructions";
-  console.log(findTestInstructions);
   let newTestInstructions = document.getElementById(findTestInstructions).innerHTML;
   document.getElementById("current-test-instructions").innerHTML = newTestInstructions;
   document.getElementById("stage-counter").innerHTML = "Test Part " + testStage + " of 3";
+}
+
+function advanceToThankYou() {
+  $("#test-window").hide();
+  $("#thank-you").show();
 }
