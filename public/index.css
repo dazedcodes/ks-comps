@@ -1,0 +1,19 @@
+#progressBarWrapper {
+    width: 95%;
+    background-color: grey;
+    height: 2em;
+    margin: 1em auto;
+}
+  
+#progressBar {
+    width: 1%;
+    height: 2em;
+    background-color: #337ab7;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
+}
+
+#add-button {
+    margin: 1em auto;
+}

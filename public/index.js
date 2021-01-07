@@ -4,96 +4,81 @@ $(document).ready(function(){
     });
 });
 
+let isCharRegex = new RegExp('[a-zA-Z0-9]');
 let uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 let testStage = 1;
-let roundCounter = 0;
+let roundCounter = 1;
 let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
 let ksDataHolding = [];
 
 document.getElementById("pw-input").addEventListener("click", (e) => {
-  console.log("Hey user! You clicked the password text field.");
   event.preventDefault();
 });
 
-
 document.getElementById("start-btn").addEventListener("click", (e) => {
-  $("#intro-instructions").hide();
-  $("#test-window").show();
-  let newTestInstructions = document.getElementById("test-1-instructions").innerHTML;
-  document.getElementById("current-test-instructions").innerHTML = newTestInstructions;
+  startUp();
+});
+
+document.getElementById("continue-btn").addEventListener("click", (e) => {
+  continueTests();
 });
 
 document.getElementById("add-btn").addEventListener("click", (e) => {
   if (document.getElementById("pw-input").value == "Type20Words") {
     roundCounter = roundCounter + 1;
-    console.log('Hey user! You clicked the submit button.');
     document.getElementById("pw-input").value = "";
-    if (roundCounter == 2) {
+    if ((roundCounter % 10) == 1) {
       testStage += 1;
-      roundCounter = 0;
-      if (testStage == 4) {
+      if (testStage == 5) {
         advanceToThankYou();
-      } else {
-        advanceToNextStage();
+      } else if (testStage == 4){
+        advanceToStage4();
       }
     }
-    document.getElementById("round-counter").innerHTML = "Round: " + roundCounter;
+    advanceRoundMessage("text-round-" + roundCounter)
+    updateProgressBar();
     writeKsData();
   }
   else {
-    window.alert('Hey user! You clicked the submit button, but your password input does not match our request! Please try again!');
+    advanceRoundMessage("text-typo");
     document.getElementById("pw-input").value = "";
-    console.log('Disregard all inputs of Round' + roundCounter + 'above this mark.');
     ksDataHolding = [];
   }
 });
 
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
   let character = String.fromCharCode(event.keyCode);
-  let character_ascii = (event.keyCode);
-  var flight_time = Date.now();
   let round = roundCounter;
   if (event.code == 'Enter'){
-    console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
   } else if (event.code == 'Backspace'){
-    window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
+    advanceRoundMessage("text-backspace");
     document.getElementById("pw-input").value = "";
-    console.log('The physical key pressed was the BACKSPACE key.');
     ksDataHolding = [];
-  } else {
-    console.log("ASCII value of", character, "(keydown): ", character_ascii);
-    console.log("Miliseconds of", character, "(keydown): ", flight_time);
-    console.log("Round of", character, ": ", round);
+  } else if (isCharRegex.test(character)) {
     stashKsData(uuid, round, character, "keydown")
   }
 });
 
 document.getElementById("pw-input").addEventListener("keyup", (e) => {
   let character = String.fromCharCode(event.keyCode);
-  let character_ascii = (event.keyCode);
-  var dwell_time = Date.now();
   let round = roundCounter;
   if (event.code == 'Enter'){
-    console.log('The physical key pressed was the Enter key.');
     event.preventDefault();
   } else if (event.code == 'Backspace'){
-    window.alert("You pressed the backspace key. Try typing password1234 WITHOUT pressing the backspace.");
+    advanceRoundMessage("text-backspace");
     document.getElementById("pw-input").value = "";
-    console.log('The physical key pressed was the BACKSPACE key.');
     ksDataHolding = [];
-  } else {
-    console.log(character);
-    console.log("ASCII value of", character, "(keyup): ", character_ascii);
-    console.log("Miliseconds of", character, "(keyup): ", dwell_time);
-    console.log("Round of", character, ": ", round);
+  } else if (isCharRegex.test(character)) {
     stashKsData(uuid, round, character, "keyup")
   }
 });
 
 function writeKsData() {
   for(let i = 0; i < ksDataHolding.length; i++){
-    firebase.database().ref('events/test' + ksDataHolding[i].testStage + '/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + '/' + ksDataHolding[i].character + '/' + ksDataHolding[i].time).set({
+    firebase.database().ref('events/ID=' + ksDataHolding[i].uuid + 
+    '/test' + ksDataHolding[i].testStage +'/round' + ksDataHolding[i].round + 
+    '/' + ksDataHolding[i].character + '/' + ksDataHolding[i].time).set({
       testStage: ksDataHolding[i].testStage,
       uuid: ksDataHolding[i].uuid,
       round: ksDataHolding[i].round,
@@ -117,14 +102,48 @@ function stashKsData(uuid, round, character, eventType) {
   ksDataHolding.push(ksData);
 }
 
-function advanceToNextStage() {
-  let findTestInstructions = "test-" + testStage + "-instructions";
-  let newTestInstructions = document.getElementById(findTestInstructions).innerHTML;
-  document.getElementById("current-test-instructions").innerHTML = newTestInstructions;
-  document.getElementById("stage-counter").innerHTML = "Test Part " + testStage + " of 3";
+function startUp() {
+  $("#intro-instructions").hide();
+  $("#test-window").show();
+  $("#progressBarWrapper").show();
+  $("#test-1-instructions").show();
+  $("#test-2-instructions").hide();
+  let newRoundInstructions = document.getElementById("text-round-1").innerHTML;
+  document.getElementById("current-round-instructions").innerHTML = newRoundInstructions;
+}
+
+function advanceRoundMessage(element) {
+  let newTestInstructions = document.getElementById(element).innerHTML;
+  document.getElementById("current-round-instructions").innerHTML = newTestInstructions;
+}
+
+function advanceToStage4() {
+  $("#stage-4-instructions").show();
+  $("#test-window").hide();
+  $("#progressBarWrapper").hide();
+}
+
+function continueTests() {
+  $("#stage-4-instructions").hide();
+  $("#test-window").show();
+  $("#progressBarWrapper").show();
+  $("#test-1-instructions").hide();
+  $("#test-2-instructions").show();
+  let newRoundInstructions = document.getElementById("text-round-31").innerHTML;
+  document.getElementById("current-round-instructions").innerHTML = newRoundInstructions;
 }
 
 function advanceToThankYou() {
   $("#test-window").hide();
   $("#thank-you").show();
+  $("#progressBarWrapper").hide();
+}
+
+function updateProgressBar() {
+  if (roundCounter < 41) {
+    var elem = document.getElementById("progressBar");
+    width = ((roundCounter - 1) / 40) * 100;
+    elem.style.width = width + "%";
+    elem.innerHTML = "Round " + roundCounter + " of 40";
+  }
 }

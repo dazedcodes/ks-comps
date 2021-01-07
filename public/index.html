@@ -7,21 +7,76 @@
   <meta name="description" content="Dwell and Flight Time Logger">
   <meta name="author" content="Maya Murphy, Nathaniel Reid">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" 
+  integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel = "stylesheet" type = "text/css" href = "index.css" />
 </head>
 
 <body>
 
   <div id="message-to-the-inspectors" hidden>
-    <p>If you're seeing this, you're savvy enough to know how to inspect our HTML and Javascript. If you spend any length of time looking it over, you may find ways to hijack our intended user experience and data collection. This is, of course, partly our fault for quickly building an app without complex security methods. Even so, we ask you to PLEASE FILL OUT OUR SURVEY AS INTENDED. Every step of the survey was built with a purpose for our hypothesis. We would have loved to make our security stronger and our survey more elaborate, but it's only a small part of our comps. So we're relying on your good faith to ensure accurate data collection. We really appreciate it. If you have suggestions or notice flaws in our design, please, email them to Nathaniel Reid at reidn@carleton.edu. Thanks; now, back to typing!</p>
+    <p>If you're seeing this, you're savvy enough to know how to inspect our HTML and Javascript. 
+      If you spend any length of time looking it over, you may find ways to hijack our intended 
+      user experience and data collection. This is, of course, partly our fault for quickly building 
+      an app without complex security methods. Even so, we ask you to PLEASE FILL OUT OUR SURVEY AS 
+      INTENDED. Every step of the survey was built with a purpose for our hypothesis. We would have 
+      loved to make our security stronger and our survey more elaborate, but it's only a small part 
+      of our comps. So we're relying on your good faith to ensure accurate data collection. We really 
+      appreciate it. If you have suggestions or notice flaws in our design, please, email them to 
+      Nathaniel Reid at reidn@carleton.edu. Thanks; now, back to typing!</p>
   </div>
 
   <!-- Front-end Dev Logic -->
-  <div id="testStageHolding" hidden>
-    <h4 id="test-1-instructions"> Directions: Insert <b><span id="passcode-wrapper">Type20Words</span></b> in the input box below, then hit the submit button. You'll be asked to repeat this twenty times. If you type in a mistake, hit Backspace or Submit to redo that attempt. </h4>
-    <h4 id="test-2-instructions"> Our comps project studies the value of keystroke-pattern-based passwords. You have a unique rhythym of typing that differs from most other people's. The timing and speed with which you press certain keys in your password will vary considerably from other's. This rhythym may be used as a second factor in authenticating your password, adding to the security and complexity of your identifier. Directions: Type <b>Type20Words</b> in the input box below, then hit the submit button. You'll be asked to repeat this twenty times. If you type in a mistake, hit Backspace or Submit to redo that attempt. Try to be consistent in how you type the password so your keystrokes are identifiable.</h4>
-    <h4 id="test-3-instructions"> Now that you have shown us your keystroke identifier, we will test your ability to mimic other people's keystroke's. Directions: Try to vary your keystrokes with each attempt as you type <b>Type20Words</b>. We'll tell you when you match the keystroke set we have logged. </h4>
-    <h4 id="test-4-instructions"> Now that you have shown us your keystroke identifier, we will test your ability to mimic other people's keystroke's. Directions: Try to vary your keystrokes with each attempt as you type <b>Type20Words</b>. We'll tell you when you match the keystroke set we have logged. </h4>
+  
+  <div id="round-text-holding" hidden>
+    <h4 id="text-typo"><b>Hey user! You clicked the submit button, but your password input does not 
+      match our request. Please try again.</b></h4>
+    <h4 id="text-backspace"><b>You pressed the backspace key. 
+      Try typing the whole prompted password without pressing the backspace.</b></h4>
+    <h4 id="text-round-1"></h4>
+    <h4 id="text-round-2">Please do not use copy-paste or autocomplete to fill in the password.</h4>
+    <h4 id="text-round-3"></h4>
+    <h4 id="text-round-4"></h4>
+    <h4 id="text-round-5">You may have made a typo or hit backspace and found that we throw out your input.</h4>
+    <h4 id="text-round-6">We've also turned off autocomplete and copy-paste.</h4>
+    <h4 id="text-round-7">This is because we're trying to gather data about your keystrokes without 
+      changing other variables. </h4>
+    <h4 id="text-round-8">We don't test you on more than one password, and we also ignore 
+      entries with interuptions.</h4>
+    <h4 id="text-round-9">When you make a typo or hit backspace, your typing rhythym changes, 
+      which will change our data.</h4>
+    <h4 id="text-round-10"></h4>
+    <h4 id="text-round-11"></h4>
+    <h4 id="text-round-12"></h4>
+    <h4 id="text-round-13"></h4>
+    <h4 id="text-round-14"></h4>
+    <h4 id="text-round-15"></h4>
+    <h4 id="text-round-16"></h4>
+    <h4 id="text-round-17"></h4>
+    <h4 id="text-round-18"></h4>
+    <h4 id="text-round-19"></h4>
+    <h4 id="text-round-20"></h4>
+    <h4 id="text-round-21"></h4>
+    <h4 id="text-round-22"></h4>
+    <h4 id="text-round-23"></h4>
+    <h4 id="text-round-24"></h4>
+    <h4 id="text-round-25"></h4>
+    <h4 id="text-round-26"></h4>
+    <h4 id="text-round-27"></h4>
+    <h4 id="text-round-28"></h4>
+    <h4 id="text-round-29"></h4>
+    <h4 id="text-round-30"></h4>
+    <h4 id="text-round-31">Failure. Keep trying different typing rhythms until one works.</h4>
+    <h4 id="text-round-32">Failure. We can't offer you hints for the purposes of the study; 
+      that's why we limited this to ten attempts.</h4>
+    <h4 id="text-round-33">Success! We'll move to another </h4>
+    <h4 id="text-round-34"></h4>
+    <h4 id="text-round-35"></h4>
+    <h4 id="text-round-36"></h4>
+    <h4 id="text-round-37"></h4>
+    <h4 id="text-round-38"></h4>
+    <h4 id="text-round-39"></h4>
+    <h4 id="text-round-40"></h4>
   </div>
 
   <body class="bg-light">
@@ -33,9 +88,24 @@
       <div class="row m-5">
         <div class="column" id="intro-instructions">
           <h4> Thank you for helping us with our comps project.
-          This survey will take approximately ten minutes and will provide us with valuable data to develop better password security methods. 
-          To ensure accurate data collection, you should complete this survey in a single session.</h4>
+          This survey will take approximately ten minutes and will provide us with valuable data to 
+          develop better password security methods. To ensure accurate data collection, you should 
+          complete this survey in a single session.</h4>
           <button type="button" id="start-btn" class="btn btn-primary mt-3"> Start </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-center">
+      <div class="row m-5">
+        <div class="column" id="stage-4-instructions" hidden>
+          <h4>Our comps project studies the value of keystroke-pattern-based passwords. 
+            You have a unique rhythym of typing that differs from most other people's. The timing and speed with 
+            which you press certain keys in your password will vary considerably from other's. This rhythm may 
+            be used as a second factor in authenticating your password, adding to the security and complexity of 
+            your identifier. Now that you have shown us your keystroke identifier, we will test your 
+            ability to mimic other people's keystroke's. </h4>
+          <button type="button" id="continue-btn" class="btn btn-primary mt-3"> Continue </button>
         </div>
       </div>
     </div>
@@ -44,12 +114,14 @@
       <div class="row m-5">
         <div class="column">
           <form id="test-window" class="mt-3" autocomplete="off" hidden>
-            <h2 id="stage-counter"> Test Part 1 of 3</h2>
-            <h4 id="current-test-instructions"></h4>
-
+            <h4 id="test-1-instructions" hidden> Directions: Insert <b><span id="passcode-wrapper">Type20Words</span></b> 
+              in the input box below, then hit the submit button. You'll be asked to repeat this thirty times. 
+              If you type in a mistake, hit Backspace or Submit to redo that attempt. </h4>
+            <h4 id="test-2-instructions" hidden> Directions: Try to vary your keystrokes with each attempt 
+              as you type <b>Type20Words</b>. We'll tell you when you match the keystroke set we have logged, but you
+              only need to make ten attempts, whether they succeed or fail.</h4>
             <input type="text" class="form-control col-sm-3" id="pw-input" placeholder="Input Type20Words">
-            <p id="round-counter"> Round: 0 </p>
-
+            <h4 id="current-round-instructions"></h4>
             <button type="button" id="add-btn" class="btn btn-primary mt-3"> Submit </button>
           </form>
         </div>
@@ -59,9 +131,14 @@
     <div class="container text-center">
       <div class="row m-5">
         <div class="column" id="thank-you" hidden>
-          <h4> That's all, folks! Thank you for completing our survey. Congratulate yourself for advancing science and have an excellent day.</h4>
+          <h4> That's all, folks! Thank you for completing our survey. Congratulate yourself for 
+            advancing science and have an excellent day.</h4>
         </div>
       </div>
+    </div>
+
+    <div id="progressBarWrapper" hidden>
+      <div id="progressBar">0%</div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
