@@ -4,10 +4,11 @@ $(document).ready(function(){
     });
 });
 
-let isCharRegex = new RegExp('[a-zA-Z0-9]');
+let isCharRegex = new RegExp("[ -~]"); //new RegExp(/^[\w\\.]/g);
+let isCharRegex2 = new RegExp("¾"); //new RegExp(/^[\w\\.]/g);
 let uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-let testStage = 1;
-let roundCounter = 1;
+let testStage = 4;
+let roundCounter = 38;
 let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
 let ksDataHolding = [];
 
@@ -24,7 +25,7 @@ document.getElementById("continue-btn").addEventListener("click", (e) => {
 });
 
 document.getElementById("add-btn").addEventListener("click", (e) => {
-  if (document.getElementById("pw-input").value == "Type20Words") {
+  if (document.getElementById("pw-input").value == ".tie5Roanl") {
     roundCounter = roundCounter + 1;
     document.getElementById("pw-input").value = "";
     if ((roundCounter % 10) == 1) {
@@ -48,6 +49,7 @@ document.getElementById("add-btn").addEventListener("click", (e) => {
 
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
   let character = String.fromCharCode(event.keyCode);
+  console.log(character);
   let round = roundCounter;
   if (event.code == 'Enter'){
     event.preventDefault();
@@ -57,6 +59,8 @@ document.getElementById("pw-input").addEventListener('keydown', (e) => {
     ksDataHolding = [];
   } else if (isCharRegex.test(character)) {
     stashKsData(uuid, round, character, "keydown")
+  } else if (isCharRegex2.test(character)) {
+    stashKsData(uuid, round, character, "keyup")
   }
 });
 
@@ -70,6 +74,8 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
     document.getElementById("pw-input").value = "";
     ksDataHolding = [];
   } else if (isCharRegex.test(character)) {
+    stashKsData(uuid, round, character, "keyup")
+  } else if (isCharRegex2.test(character)) {
     stashKsData(uuid, round, character, "keyup")
   }
 });
