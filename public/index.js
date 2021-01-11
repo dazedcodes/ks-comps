@@ -7,8 +7,8 @@ $(document).ready(function(){
 let isCharRegex = new RegExp("[ -~]"); //new RegExp(/^[\w\\.]/g);
 let isCharRegex2 = new RegExp("¾"); //new RegExp(/^[\w\\.]/g);
 let uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-let testStage = 4;
-let roundCounter = 38;
+let testStage = 1;
+let roundCounter = 1;
 let testPasscode = document.getElementById("passcode-wrapper").innerHTML;
 let ksDataHolding = [];
 
