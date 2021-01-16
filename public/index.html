@@ -31,51 +31,9 @@
   <div id="round-text-holding" hidden>
     <h4 id="text-typo"><b>Hey user! You clicked the submit button, but your password input does not 
       match our request. Please try again.</b></h4>
-    <h4 id="text-backspace"><b>You pressed the backspace key. 
-      Try typing the whole prompted password without pressing the backspace.</b></h4>
-    <h4 id="text-round-1"></h4>
-    <h4 id="text-round-2">Please do not use copy-paste or autocomplete to fill in the password. 
-      These options should be disabled on this webpage.</h4>
-    <h4 id="text-round-3">Please also do not refresh this page; if you do so, your progress will not be saved.</h4>
-    <h4 id="text-round-4">Unless an emergency emerges, we will appreciate if you can complete this task in one sitting, without breaks</h4>
-    <h4 id="text-round-5">This will improve the consistency of our data. </h4>
-    <h4 id="text-round-6"></h4>
-    <h4 id="text-round-7">If some element of this quiz is not working, is not clear, or could be improved, 
-      please email Nathaniel Reid at reidn@carleton.edu</h4>
-    <h4 id="text-round-8"></h4>
-    <h4 id="text-round-9"></h4>
-    <h4 id="text-round-10">Now that you're comfortable with the system, and we have no more to say, let's share a fun anecdote.</h4>
-    <h4 id="text-round-11">In most Software Development projects, "debugging" is a common task.</h4>
-    <h4 id="text-round-12">"Bugs" are the little, annoying problems that aren't too hard to fix, but always multiply furiously.</h4>
-    <h4 id="text-round-13">The term "debugging" is popularly attributed to U.S. Navy Rear Admiral Grace Hopper.</h4>
-    <h4 id="text-round-14">Admiral Hopper was working in Harvard University on a Mark II computer in the 1940s.</h4>
-    <h4 id="text-round-15">A moth became stuck in one of the archaic machine's large relays, and was damaging its functionality.</h4>
-    <h4 id="text-round-16">As she helped remove the moth, Admiral Hopper commented that they were "debugging" the machine.</h4>
-    <h4 id="text-round-17">However, this common myth is likely wrong; "debugging" was used in papers and media even in the 19th century.</h4>
-    <h4 id="text-round-18">It was commonly used in aeronautics engineering prior to the devleopment of computers.</h4>
-    <h4 id="text-round-19">But even Thomas Edison mentioned it in his writings, in the 1870s. </h4>
-    <h4 id="text-round-20">It might have emerged from very early mechanical engineering jargon.</h4>
-    <h4 id="text-round-21">Before circuitry and machines were miniaturized, real bugs could cause problems if they crept into machines.</h4>
-    <h4 id="text-round-22">But we don't know for sure when the word originated.</h4>
-    <h4 id="text-round-23">Rear Admiral Grace Hopper was an incredible engineer, though.</h4>
-    <h4 id="text-round-24">She earned a PhD in mathematics from Yale. She tried to join the Navy during World War II, but was rejected due not meeting physical requirements.</h4>
-    <h4 id="text-round-25">She instead joined the Navy Reserves and went through basic training before helping the Navy work on computers that were used in the Manhatten Project.</h4>
-    <h4 id="text-round-26">After the war, Admiral Hopper continued advancing computer science, working on the famous UNIVAC computer.</h4>
-    <h4 id="text-round-27">She developed one of the first compilers, a piece of software that we computer scientists love.</h4>
-    <h4 id="text-round-28">If we couldn't compile code, we couldn't write it in actual words and symbols. We'd need to use numbers.</h4>
-    <h4 id="text-round-29">It'd be bad. </h4>
-    <h4 id="text-round-30">So thank you, Admiral Hopper. You may not have originated a fun C.S. term, but you did save us all a lot of work.</h4>
-    <h4 id="text-round-31"></h4>
-    <h4 id="text-round-32">Failure. Keep trying different typing rhythms until one works.</h4>
-    <h4 id="text-round-33">Failure. We can't offer you hints for the purposes of the study; 
-      that's why we limited this to ten attempts.</h4>
-    <h4 id="text-round-34">Success! We'll move to another password composition.</h4>
-    <h4 id="text-round-35">Failure. Try again!</h4>
-    <h4 id="text-round-36">Failure. Try again!</h4>
-    <h4 id="text-round-37">Failure. Try again!</h4>
-    <h4 id="text-round-38">Success! Continue trying to crack passwords until you get to forty inputs. </h4>
-    <h4 id="text-round-39">Success! Good work.</h4>
-    <h4 id="text-round-40">Failure! Try again.</h4>
+    <h4 id="text-error"><b>You pressed backspace or another erroneous key. 
+      Try typing the whole prompted password without pressing backspace, caps lock, or keys not 
+      needed to input the password.</b></h4>
   </div>
 
   <body class="bg-light">
@@ -89,7 +47,8 @@
           <h4> Thank you for helping us with our comps project.
           This survey will take approximately ten minutes and will provide us with valuable data to 
           develop better password security methods. To ensure accurate data collection, 
-          <b>please complete this survey in a single session</b>.</h4>
+          <b>please complete this survey in a single session. Use a laptop, desktop, or
+          another machine with a keyboard, not a mobile device.</b></h4>
           <button type="button" id="start-btn" class="btn btn-primary mt-3"> Start </button>
         </div>
       </div>
@@ -99,11 +58,10 @@
       <div class="row m-5">
         <div class="column" id="stage-4-instructions" hidden>
           <h4>Our comps project studies the value of keystroke-pattern-based passwords. 
-            This assumes Your rhythm of typing  differs from other peoples'. This rhythm may 
+            This assumes your rhythm of typing  differs from other peoples'. This rhythm may 
             be used as a second factor in authenticating your password, adding to the security and complexity of 
             your identifier. Now that you have shown us your keystroke identifier, we will test your 
             ability to guess other peoples' keystrokes. </h4>
-          <button type="button" id="continue-btn" class="btn btn-primary mt-3"> Continue </button>
         </div>
       </div>
     </div>
@@ -112,12 +70,9 @@
       <div class="row m-5">
         <div class="column">
           <form id="test-window" class="mt-3" autocomplete="off" hidden>
-            <h4 id="test-1-instructions" hidden> Directions: Type in <b><span id="passcode-wrapper">.tie5Roanl</span></b> 
+            <h4 id="test-1-instructions"> Directions: Type in <b><span id="passcode-wrapper">.tie5Roanl</span></b> 
               in the input box below, then hit the submit button. You'll be asked to repeat this thirty times. 
               If you type in a mistake, hit Backspace or Submit to redo that attempt. </h4>
-            <h4 id="test-2-instructions" hidden> Directions: Try to vary your keystrokes with each attempt 
-              as you type <b>.tie5Roanl</b>. We'll tell you when you match the keystroke set we have logged, but you
-              only need to make ten attempts, whether they succeed or fail.</h4>
             <input type="text" class="form-control col-sm-3" id="pw-input" placeholder="Input .tie5Roanl">
             <h4 id="current-round-instructions"></h4>
             <button type="button" id="add-btn" class="btn btn-primary mt-3"> Submit </button>

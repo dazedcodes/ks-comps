@@ -4,8 +4,10 @@ $(document).ready(function(){
     });
 });
 
-let isCharRegex = new RegExp("[ -~]"); //new RegExp(/^[\w\\.]/g);
-let isCharRegex2 = new RegExp("¾"); //new RegExp(/^[\w\\.]/g);
+let masterKeyList = new Array("KeyA","KeyB","KeyC","KeyD","KeyE","KeyF","KeyG","KeyH","KeyI",
+"KeyJ","KeyK","KeyL","KeyM","KeyN","KeyO","KeyP","KeyQ","KeyR","KeyS","KeyT","KeyU","KeyV",
+"KeyW","KeyX","KeyY","KeyZ","Digit0","Digit1","Digit2","Digit3","Digit4","Digit5","Digit6",
+"Digit7","Digit8","Digit9","ShiftLeft","ShiftRight","Period");
 let uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 let testStage = 1;
 let roundCounter = 1;
@@ -20,23 +22,16 @@ document.getElementById("start-btn").addEventListener("click", (e) => {
   startUp();
 });
 
-document.getElementById("continue-btn").addEventListener("click", (e) => {
-  continueTests();
-});
-
 document.getElementById("add-btn").addEventListener("click", (e) => {
   if (document.getElementById("pw-input").value == ".tie5Roanl") {
     roundCounter = roundCounter + 1;
     document.getElementById("pw-input").value = "";
     if ((roundCounter % 10) == 1) {
       testStage += 1;
-      if (testStage == 5) {
+      if (testStage == 4) {
         advanceToThankYou();
-      } else if (testStage == 4){
-        advanceToStage4();
       }
     }
-    advanceRoundMessage("text-round-" + roundCounter)
     updateProgressBar();
     writeKsData();
   }
@@ -48,60 +43,56 @@ document.getElementById("add-btn").addEventListener("click", (e) => {
 });
 
 document.getElementById("pw-input").addEventListener('keydown', (e) => {
-  let character = String.fromCharCode(event.keyCode);
-  console.log(character);
+  let charCode = event.code;
+  console.log(charCode);
   let round = roundCounter;
   if (event.code == 'Enter'){
     event.preventDefault();
-  } else if (event.code == 'Backspace'){
-    advanceRoundMessage("text-backspace");
+  } else if (masterKeyList.includes(charCode)) {
+    stashKsData(uuid, round, charCode, "keydown")
+  } else {
+    advanceRoundMessage("text-error");
     document.getElementById("pw-input").value = "";
     ksDataHolding = [];
-  } else if (isCharRegex.test(character)) {
-    stashKsData(uuid, round, character, "keydown")
-  } else if (isCharRegex2.test(character)) {
-    stashKsData(uuid, round, character, "keyup")
-  }
+  } 
 });
 
 document.getElementById("pw-input").addEventListener("keyup", (e) => {
-  let character = String.fromCharCode(event.keyCode);
+  let charCode = event.code;
   let round = roundCounter;
   if (event.code == 'Enter'){
     event.preventDefault();
-  } else if (event.code == 'Backspace'){
-    advanceRoundMessage("text-backspace");
+  } else if (masterKeyList.includes(charCode)) {
+    stashKsData(uuid, round, charCode, "keyup")
+  } else {
+    advanceRoundMessage("text-error");
     document.getElementById("pw-input").value = "";
     ksDataHolding = [];
-  } else if (isCharRegex.test(character)) {
-    stashKsData(uuid, round, character, "keyup")
-  } else if (isCharRegex2.test(character)) {
-    stashKsData(uuid, round, character, "keyup")
-  }
+  } 
 });
 
 function writeKsData() {
-  for(let i = 0; i < ksDataHolding.length; i++){
-    firebase.database().ref('events/ID=' + ksDataHolding[i].uuid + 
+  for(let i = 0; i < ksDataHolding.length; i++)/** {
+   firebase.database().ref('events/ID=' + ksDataHolding[i].uuid + 
     '/test' + ksDataHolding[i].testStage +'/round' + ksDataHolding[i].round + 
-    '/' + ksDataHolding[i].character + '/' + ksDataHolding[i].time).set({
+    '/' + ksDataHolding[i].charCode + '/' + ksDataHolding[i].time).set({
       testStage: ksDataHolding[i].testStage,
       uuid: ksDataHolding[i].uuid,
       round: ksDataHolding[i].round,
-      character: ksDataHolding[i].character,
+      character: ksDataHolding[i].charCode,
       time: ksDataHolding[i].time,
       eventType: ksDataHolding[i].eventType
     });
-  }
+  } **/
   ksDataHolding = []
 }
 
-function stashKsData(uuid, round, character, eventType) {
+function stashKsData(uuid, round, charCode, eventType) {
   let ksData =  {
     "testStage": testStage,
     "uuid": uuid,
     "round": round,
-    "character": character,
+    "character": charCode,
     "time": Date.now(),
     "eventType": eventType
     }
@@ -113,30 +104,11 @@ function startUp() {
   $("#test-window").show();
   $("#progressBarWrapper").show();
   $("#test-1-instructions").show();
-  $("#test-2-instructions").hide();
-  let newRoundInstructions = document.getElementById("text-round-1").innerHTML;
-  document.getElementById("current-round-instructions").innerHTML = newRoundInstructions;
 }
 
 function advanceRoundMessage(element) {
   let newTestInstructions = document.getElementById(element).innerHTML;
   document.getElementById("current-round-instructions").innerHTML = newTestInstructions;
-}
-
-function advanceToStage4() {
-  $("#stage-4-instructions").show();
-  $("#test-window").hide();
-  $("#progressBarWrapper").hide();
-}
-
-function continueTests() {
-  $("#stage-4-instructions").hide();
-  $("#test-window").show();
-  $("#progressBarWrapper").show();
-  $("#test-1-instructions").hide();
-  $("#test-2-instructions").show();
-  let newRoundInstructions = document.getElementById("text-round-31").innerHTML;
-  document.getElementById("current-round-instructions").innerHTML = newRoundInstructions;
 }
 
 function advanceToThankYou() {
@@ -148,8 +120,8 @@ function advanceToThankYou() {
 function updateProgressBar() {
   if (roundCounter < 41) {
     var elem = document.getElementById("progressBar");
-    width = ((roundCounter - 1) / 40) * 100;
+    width = ((roundCounter - 1) / 30) * 100;
     elem.style.width = width + "%";
-    elem.innerHTML = "Round " + roundCounter + " of 40";
+    elem.innerHTML = "Round " + roundCounter + " of 30";
   }
 }
