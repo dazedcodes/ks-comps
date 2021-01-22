@@ -23,7 +23,7 @@ document.getElementById("start-btn").addEventListener("click", (e) => {
 });
 
 document.getElementById("add-btn").addEventListener("click", (e) => {
-  if (document.getElementById("pw-input").value == ".tie5Roanl") {
+  if (document.getElementById("pw-input").value == ".tie5Roanl" && ksDataHolding.length == 22) {
     roundCounter = roundCounter + 1;
     document.getElementById("pw-input").value = "";
     if ((roundCounter % 10) == 1) {
@@ -32,6 +32,7 @@ document.getElementById("add-btn").addEventListener("click", (e) => {
         advanceToThankYou();
       }
     }
+    advanceRoundMessage("text-blank");
     updateProgressBar();
     writeKsData();
   }
@@ -73,8 +74,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
 
 function writeKsData() {
   for(let i = 0; i < ksDataHolding.length; i++) {
-   firebase.database().ref('testing/ID=' + ksDataHolding[i].uuid + 
-    '/test' + ksDataHolding[i].testStage +'/round' + ksDataHolding[i].round + 
+  firebase.database().ref('testing/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + 
     '/' + ksDataHolding[i].charCode + '/' + ksDataHolding[i].time).set({
       testStage: ksDataHolding[i].testStage,
       uuid: ksDataHolding[i].uuid,
@@ -83,8 +83,8 @@ function writeKsData() {
       time: ksDataHolding[i].time,
       eventType: ksDataHolding[i].eventType
     });
-  }
   ksDataHolding = []
+  }
 }
 
 function stashKsData(uuid, round, charCode, eventType) {
@@ -120,7 +120,7 @@ function advanceToThankYou() {
 function updateProgressBar() {
   if (roundCounter < 41) {
     var elem = document.getElementById("progressBar");
-    width = ((roundCounter - 1) / 30) * 100;
+    width = ((roundCounter + 4) / 35) * 100;
     elem.style.width = width + "%";
     elem.innerHTML = "Round " + roundCounter + " of 30";
   }

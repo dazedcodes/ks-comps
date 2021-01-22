@@ -29,16 +29,18 @@
   <!-- Front-end Dev Logic -->
   
   <div id="round-text-holding" hidden>
-    <h4 id="text-typo"><b>Hey user! You clicked the submit button, but your password input does not 
-      match our request. Please try again.</b></h4>
+    <h4 id="text-typo"><b>You pressed the submit button, but we detected a typo or an extraneous keystroke. 
+      Please type in the prompted password without pressing any other keys. Thank you!
+    </b></h4>
     <h4 id="text-error"><b>You pressed backspace or another erroneous key. 
       Try typing the whole prompted password without pressing backspace, caps lock, or keys not 
       needed to input the password.</b></h4>
+      <h4 id="text-blank"></h4>
   </div>
 
   <body class="bg-light">
     <nav class="navbar navbar-dark bg-primary">
-      <h2>Carleton College Comps Group Beta</h2>
+      <h2>Carleton College Comps Group Survey</h2>
     </nav>
 
     <div class="container text-center">
@@ -88,14 +90,12 @@
             advancing science and have an excellent day.</h4>
           <h4> We would love feedback on our form. If something is not clear, or fails to work on your device,
             contact Nathaniel Reid at reidn@carleton.edu or Maya Murphy at mayam2@carleton.edu. Thank you. </h4>
-          <h4> Learn more about the history of <a href="https://en.wikipedia.org/wiki/Debugging">debugging</a> and <a href="https://en.wikipedia.org/wiki/Grace_Hopper">Admiral Hopper</a>. </h4>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <title>Comps Survey</title> <style type="text/css"> html{ margin: 0; height: 100%; overflow: hidden; } iframe{ position: absolute; left:0; right:0; bottom:0; top:0; border:0; } </style> </head> <body> <iframe id="typeform-full" width="100%" height="100%" frameborder="0" allow="camera; microphone; autoplay; encrypted-media;" src="https://form.typeform.com/to/wfKMXK3K?typeform-medium=embed-snippet"></iframe> <script type="text/javascript" src="https://embed.typeform.com/embed.js"></script>
         </div>
       </div>
     </div>
 
     <div id="progressBarWrapper" hidden>
-      <div id="progressBar">0%</div>
+      <div id="progressBar">Round 1 of 30</div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
