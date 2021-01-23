@@ -74,7 +74,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
 
 function writeKsData() {
   for(let i = 0; i < ksDataHolding.length; i++) {
-  firebase.database().ref('testing/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + 
+  firebase.database().ref('data-survey-1/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + 
     '/' + ksDataHolding[i].charCode + '/' + ksDataHolding[i].time).set({
       testStage: ksDataHolding[i].testStage,
       uuid: ksDataHolding[i].uuid,
@@ -83,8 +83,8 @@ function writeKsData() {
       time: ksDataHolding[i].time,
       eventType: ksDataHolding[i].eventType
     });
-  ksDataHolding = []
   }
+  ksDataHolding = [];
 }
 
 function stashKsData(uuid, round, charCode, eventType) {
