@@ -74,7 +74,7 @@ document.getElementById("pw-input").addEventListener("keyup", (e) => {
 
 function writeKsData() {
   for(let i = 0; i < ksDataHolding.length; i++) {
-  firebase.database().ref('data-survey-1/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + 
+  firebase.database().ref('System-demo/ID=' + ksDataHolding[i].uuid + '/round' + ksDataHolding[i].round + 
     '/' + ksDataHolding[i].charCode + '/' + ksDataHolding[i].time).set({
       testStage: ksDataHolding[i].testStage,
       uuid: ksDataHolding[i].uuid,
